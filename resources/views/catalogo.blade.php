@@ -8,8 +8,8 @@
 
 @section('content')
 <div class="row" >
-    <div class="col-md-3 col-sm-12 mb-4">
-        <div class="sidebar">
+    <div class="col-md-2 col-sm-12 mb-4">
+    <div class="sidebar" style="max-width: 180px; width: 100%;">
             <h4>Categorías</h4>
             <a href="{{ route('catalogo', ['cat' => 'Todas']) }}" class="{{ $categoria === 'Todas' ? 'fw-bold' : '' }}">Todas</a><br>
             @if(isset($categorias) && $categorias->isNotEmpty())
@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div class="col-md-9 col-sm-12">
+    <div class="col-md-10 col-sm-12">
         <h2>Nuestros Productos</h2>
         <div class="row">
             @if(isset($productos) && $productos->isNotEmpty())
