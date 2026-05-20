@@ -46,7 +46,8 @@ class ProductoController extends Controller
             return redirect()->back()->with('error', 'No hay stock disponible para este producto.');
         }
 
-        $carrito = session()->get('carrito', []);
+        $userKey = auth()->check() ? auth()->id() : 'invitado';
+        $carrito = session()->get("carrito.{$userKey}", []);
 
         // Contamos cuántas unidades de este producto ya tenemos en la sesión
         $unidades_en_carrito = 0;
@@ -69,20 +70,21 @@ class ProductoController extends Controller
             'stock'  => $producto->stock,
         ];
 
-        session()->put('carrito', $carrito);
+        session()->put("carrito.{$userKey}", $carrito);
 
         return redirect()->back();
     }
 
     public function removeFromCart($index)
     {
-        $carrito = session()->get('carrito', []);
+        $userKey = auth()->check() ? auth()->id() : 'invitado';
+        $carrito = session()->get("carrito.{$userKey}", []);
 
         if (isset($carrito[$index])) {
             unset($carrito[$index]);
-            session()->put('carrito', array_values($carrito));
+            session()->put("carrito.{$userKey}", array_values($carrito));
         }
 
-        return redirect()->back()->with('success', 'Producto añadido al carrito correctamente.');
+        return redirect()->back()->with('success', 'Producto eliminado del carrito correctamente.');
     }
 }

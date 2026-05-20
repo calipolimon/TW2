@@ -19,7 +19,8 @@
     </div>
     <div style="display: flex; gap: 15px; align-items: center; position: relative;">
         @php
-            $carrito = session('carrito', []);
+            $userKey = auth()->check() ? auth()->id() : 'invitado';
+            $carrito = session("carrito.{$userKey}", []);
             $cantidadCarrito = count($carrito);
         @endphp
         <label for="carrito-toggle" class="carrito-boton" title="Ver carrito">🛒 [{{ $cantidadCarrito }}]</label>
