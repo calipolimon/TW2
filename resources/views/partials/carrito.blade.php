@@ -1,0 +1,1 @@
+{{-- Carrito gestionado por Laravel session y controller --}}
