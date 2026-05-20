@@ -12,12 +12,12 @@
 
     <div style="display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap;">
         <div style="background: #f9f9f9; padding: 15px; border-radius: 5px; flex: 1; min-width: 240px;">
-            <h3 style="color: #5d4e37; margin: 0 0 10px 0;">Total Productos</h3>
-            <p style="font-size: 28px; color: #a0826d; margin: 0;">{{ $productos->count() }}</p>
+            <h3 style="color: #5d4e37; margin: 0 0 10px 0;">Total Unidades Stock</h3>
+            <p style="font-size: 28px; color: #a0826d; margin: 0;">{{ $total_productos }}</p>
         </div>
         <div style="background: #f9f9f9; padding: 15px; border-radius: 5px; flex: 1; min-width: 240px;">
             <h3 style="color: #5d4e37; margin: 0 0 10px 0;">Valor Inventario</h3>
-            <p style="font-size: 28px; color: #a0826d; margin: 0;">${{ number_format($productos->sum(fn($producto) => $producto->precio), 2) }}</p>
+            <p style="font-size: 28px; color: #a0826d; margin: 0;">${{ number_format($valor_inventario, 2) }}</p>
         </div>
     </div>
 
@@ -55,10 +55,11 @@
             Los productos se administran directamente en la base de datos.
         </p>
         <ul style="color: #666; line-height: 1.8; padding-left: 1rem;">
-            <li><strong>Total de productos en catálogo:</strong> {{ $productos->count() }}</li>
-            <li><strong>Valor total inventario:</strong> ${{ number_format($productos->sum(fn($producto) => $producto->precio), 2) }}</li>
-            <li><strong>Sistema de carro:</strong> Sesión Laravel</li>
-            <li><strong>Gestión de inventario:</strong> Base de datos MySQL/SQLite</li>
+            <li><strong>Tipos de artículos diferentes:</strong> {{ $productos->count() }}</li>
+            <li><strong>Total de unidades disponibles (Existencias):</strong> {{ $total_productos }}</li>
+            <li><strong>Valor total de las existencias:</strong> ${{ number_format($valor_inventario, 2) }}</li>
+            <li><strong>Sistema de carro:</strong> Base de Datos (Usuarios) / Sesión (Invitados)</li>
+            <li><strong>Gestión de inventario:</strong> Base de datos SQLite</li>
         </ul>
     </div>
 </div>
