@@ -10,6 +10,3 @@ Para detenerlo simplemente hacer:
 ``` bash
 Ctrl + C 
 ``` 
-
-Queda pendiente (lo hago en un rato)
-hacer las cosas adaptables a movil y solucionar buig de stock de carritos, solo me deja meter uno de cada uno.
