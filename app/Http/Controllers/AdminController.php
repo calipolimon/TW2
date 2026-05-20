@@ -22,7 +22,7 @@ class AdminController extends Controller
 
         $productos = Producto::all();
         
-        // Calculamos de forma agregada el sumatorio de precio * stock de cada artículo (Punto 8)
+        // Calculamos de forma agregada el sumatorio de precio * stock de cada artículo 
         $valor_inventario = Producto::sum(\DB::raw('precio * stock'));
 
         return view('admin.administracion_stock', compact('productos', 'valor_inventario'));
