@@ -2,7 +2,10 @@
     <h1>Tienda Artesanal</h1>
 </header>
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #8b7355; padding: 10px 20px;">
-    <div style="flex: 1; display: flex; justify-content: center; gap: 15px;">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav" style="gap: 15px;">
         <a href="{{ route('inicio') }}">Inicio</a>
         <a href="{{ route('catalogo') }}">Catálogo</a>
         <a href="{{ url('/contacto') }}">Contacto</a>
