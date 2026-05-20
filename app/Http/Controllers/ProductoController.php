@@ -48,6 +48,19 @@ class ProductoController extends Controller
 
         $carrito = session()->get('carrito', []);
 
+        // Contamos cuántas unidades de este producto ya tenemos en la sesión
+        $unidades_en_carrito = 0;
+        foreach ($carrito as $item) {
+            if ($item['producto_id'] == $producto->id) {
+                $unidades_en_carrito++;
+            }
+        }
+
+        // Si al intentar añadir 1 más superamos el stock real de la base de datos, abortamos
+        if (($unidades_en_carrito + 1) > $producto->stock) {
+            return redirect()->back()->with('error', 'No puedes añadir más unidades de este producto. Has alcanzado el límite de stock disponible.');
+        }
+
         $carrito[] = [
             'producto_id' => $producto->id,
             'nombre' => $producto->nombre,
@@ -70,6 +83,6 @@ class ProductoController extends Controller
             session()->put('carrito', array_values($carrito));
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Producto añadido al carrito correctamente.');
     }
 }
