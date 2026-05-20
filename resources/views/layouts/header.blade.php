@@ -1,7 +1,7 @@
 <header>
     <h1>Tienda Artesanal</h1>
 </header>
-<nav style="background-color: #8b7355; padding: 10px; display: flex; align-items: center;">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #8b7355; padding: 10px 20px;">
     <div style="flex: 1; display: flex; justify-content: center; gap: 15px;">
         <a href="{{ route('inicio') }}">Inicio</a>
         <a href="{{ route('catalogo') }}">Catálogo</a>
