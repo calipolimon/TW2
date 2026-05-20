@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row" style="margin: 0;">
-    <div class="col-md-2">
+<div class="row" >
+    <div class="col-md-3 col-sm-12 mb-4">
         <div class="sidebar">
             <h4>Categorías</h4>
             <a href="{{ route('catalogo', ['cat' => 'Todas']) }}" class="{{ $categoria === 'Todas' ? 'fw-bold' : '' }}">Todas</a><br>
@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div class="col-md-10">
+    <div class="col-md-9 col-sm-12">
         <h2>Nuestros Productos</h2>
         <div class="row">
             @if(isset($productos) && $productos->isNotEmpty())
