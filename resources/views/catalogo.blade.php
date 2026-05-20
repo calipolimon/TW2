@@ -34,14 +34,18 @@
                                 <p class="fw-bold text-success">$ {{ number_format($producto->precio, 2) }}</p>
                                 <p class="mb-2">Stock: {{ $producto->stock }}</p>
                                 <div class="d-flex gap-2 mt-auto">
-                                    <a href="{{ route('producto.detalle', $producto->id) }}" class="btn btn-outline-primary btn-sm">Ver detalle</a>
-                                    <form method="POST" action="{{ route('carrito.add') }}" class="d-inline-flex flex-fill">
-                                        @csrf
-                                        <input type="hidden" name="producto_id" value="{{ $producto->id }}">
-                                        <button type="submit" class="btn {{ $producto->stock <= 0 ? 'btn-danger' : 'btn-primary' }} btn-sm flex-fill" @if($producto->stock <= 0) disabled @endif>
-                                            @if($producto->stock <= 0) Agotado @else Añadir al carrito @endif
-                                        </button>
-                                    </form>
+                                    @if(auth()->check() && auth()->user()->isAdmin())
+                                        <a href="{{ route('admin.producto.edit', $producto->id) }}" class="btn btn-warning btn-sm flex-fill fw-bold">Modificar Stock</a>
+                                    @else
+                                        <a href="{{ route('producto.detalle', $producto->id) }}" class="btn btn-outline-primary btn-sm">Ver detalle</a>
+                                        <form method="POST" action="{{ route('carrito.add') }}" class="d-inline-flex flex-fill">
+                                            @csrf
+                                            <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+                                            <button type="submit" class="btn {{ $producto->stock <= 0 ? 'btn-danger' : 'btn-primary' }} btn-sm flex-fill" @if($producto->stock <= 0) disabled @endif>
+                                                @if($producto->stock <= 0) Agotado @else Añadir al carrito @endif
+                                            </button>
+                                        </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>
