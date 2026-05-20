@@ -85,6 +85,6 @@ class ProductoController extends Controller
             session()->put("carrito.{$userKey}", array_values($carrito));
         }
 
-        return redirect()->back()->with('success', 'Producto eliminado del carrito correctamente.');
+        return redirect()->to(url()->previous() . '?carrito=abierto')->with('success', 'Producto eliminado del carrito correctamente.');
     }
 }
