@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@if(session('pago_exitoso'))
+    <script>
+        alert("{{ session('pago_exitoso') }}");
+    </script>
+@endif
+
 @section('content')
 <div class="row" >
     <div class="col-md-3 col-sm-12 mb-4">

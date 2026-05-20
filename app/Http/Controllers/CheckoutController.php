@@ -11,7 +11,8 @@ class CheckoutController extends Controller
 {
     public function show(Request $request)
     {
-        $cart = session()->get('carrito', []);
+        $userKey = auth()->check() ? auth()->id() : 'invitado';
+        $cart = session()->get("carrito.{$userKey}", []);
 
         if (empty($cart)) {
             return redirect()->route('catalogo')->with('error', 'Tu carrito está vacío. Agrega productos antes de pagar.');
@@ -22,7 +23,8 @@ class CheckoutController extends Controller
 
     public function process(Request $request)
     {
-        $cart = session()->get('carrito', []);
+        $userKey = auth()->check() ? auth()->id() : 'invitado';
+        $cart = session()->get("carrito.{$userKey}", []);
 
         if (empty($cart)) {
             return redirect()->route('catalogo')->with('error', 'Tu carrito está vacío.');
@@ -64,12 +66,8 @@ class CheckoutController extends Controller
 
         $total = collect($cart)->sum('precio');
 
-        session()->forget('carrito');
+        session()->forget("carrito.{$userKey}");
 
-        return redirect()->route('checkout')->with([
-            'success' => 'Pago procesado correctamente. Tu pedido ha sido registrado.',
-            'total' => $total,
-            'order_id' => $pedido->id,
-        ]);
+        return redirect()->route('catalogo')->with('pago_exitoso', '¡Pago procesado con éxito! Tu pedido ha sido registrado correctamente.');
     }
 }
