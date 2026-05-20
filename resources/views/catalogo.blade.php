@@ -32,7 +32,7 @@
                                     <form method="POST" action="{{ route('carrito.add') }}" class="d-inline-flex flex-fill">
                                         @csrf
                                         <input type="hidden" name="producto_id" value="{{ $producto->id }}">
-                                        <button type="submit" class="btn btn-primary btn-sm flex-fill" @if($producto->stock <= 0) disabled @endif>
+                                        <button type="submit" class="btn {{ $producto->stock <= 0 ? 'btn-danger' : 'btn-primary' }} btn-sm flex-fill" @if($producto->stock <= 0) disabled @endif>
                                             @if($producto->stock <= 0) Agotado @else Añadir al carrito @endif
                                         </button>
                                     </form>
