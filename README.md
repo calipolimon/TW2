@@ -3,7 +3,7 @@ Plataforma web para la venta de productos artesanales únicos, con catálogo vis
 
 El servidor se inicia de momento asi:
 ``` bash
-php -S 127.0.0.1:8000
+touch database/database.sqlite && php artisan migrate --seed && php artisan serve
 ``` 
 
 Para detenerlo simplemente hacer:
