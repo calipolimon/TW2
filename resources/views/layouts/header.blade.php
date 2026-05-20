@@ -30,7 +30,7 @@
     </div>
 </nav>
 
-<input type="checkbox" id="carrito-toggle" {{ request()->get('carrito') === 'abierto' ? 'checked' : '' }}>
+<input type="checkbox" id="carrito-toggle" style="display: none;" {{ request()->get('carrito') === 'abierto' ? 'checked' : '' }}>
 <div class="carrito-panel">
     <a href="{{ route('catalogo') }}" style="display: block; text-align: right; text-decoration: none; color: #5d4e37; font-weight: bold; font-size: 18px; margin-bottom: 10px;">✕</a>
     <div class="carrito-titulo">Mi Carrito</div>
