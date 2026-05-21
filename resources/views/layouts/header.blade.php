@@ -5,19 +5,21 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav" style="gap: 15px;">
-        <a href="{{ route('inicio') }}">Inicio</a>
-        <a href="{{ route('catalogo') }}">Catálogo</a>
-        <a href="{{ url('/contacto') }}">Contacto</a>
-        @auth
-            <a href="{{ route('perfil') }}">Perfil</a>
-            @if(auth()->user()->isAdmin())
-                <a href="{{ route('admin.pedidos') }}">Pedidos</a>
-                <a href="{{ route('admin.stock') }}">Administración</a>
-            @endif
-        @endauth
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav" style="gap: 15px; padding: 10px 0;">
+            <a href="{{ route('inicio') }}" style="color: white; text-decoration: none;">Inicio</a>
+            <a href="{{ route('catalogo') }}" style="color: white; text-decoration: none;">Catálogo</a>
+            <a href="{{ url('/contacto') }}" style="color: white; text-decoration: none;">Contacto</a>
+            @auth
+                <a href="{{ route('perfil') }}" style="color: white; text-decoration: none;">Perfil</a>
+                @if(auth()->user()->isAdmin())
+                    <a href="{{ route('admin.pedidos') }}" style="color: #ffeeba; font-weight: bold; text-decoration: none;">Pedidos 🛠️</a>
+                    <a href="{{ route('admin.stock') }}" style="color: #ffeeba; font-weight: bold; text-decoration: none;">Administración ⚙️</a>
+                @endif
+            @endauth
+        </div>
     </div>
-    <div style="display: flex; gap: 15px; align-items: center; position: relative;">
+    <div style="display: flex; gap: 15px; align-items: center; justify-content: flex-end; margin-left: auto; white-space: nowrap;">
         @php
             $userKey = auth()->check() ? auth()->id() : 'invitado';
             $carrito = session("carrito.{$userKey}", []);
